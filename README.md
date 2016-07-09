@@ -23,19 +23,17 @@ Converting a unique integer ID (which is in base10) to it's equivalent in base59
 - app
 ---- data.js
 ---- rules.js
-- config
 ---- db.js 
+---- startup.js
 - node_modules <!-- created by npm install -->
 - public <!-- all frontend and angular stuff -->
 ---- css
 ---- js
 -------- shared
--------- controllers <!-- angular controllers -->
--------- services <!-- angular services -->
 -------- app.js <!-- angular application -->
----- img
----- views 
--------- index.html
+---- fonts
+- views 
+---- index.html
 - package.json <!-- tells npm which packages we need -->
 - server.js <!-- set up our node application -->
 ```
