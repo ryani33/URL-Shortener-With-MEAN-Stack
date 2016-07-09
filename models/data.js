@@ -17,7 +17,7 @@ MongoClient.connect(fullMongoUrl)
         var counterCollection = db.collection("counters");
         
         /* user system related funcs */
-        exports.createUrl = function(longUrl, type) {
+        exports.createUrl = function(longUrl, type, shortHost) {
             if (!longUrl) return Promise.reject("You must provide a longUrl");
 
             return urlCollection.find({ long_url: longUrl }).limit(1).toArray().then(function(listOfUrls) {
@@ -25,11 +25,11 @@ MongoClient.connect(fullMongoUrl)
                     updateTimestamp(listOfUrls[0]._id);
                     return listOfUrls[0];
                 } else {
-                    return counterCollection.update({ _id: type }, { $inc: { "last_num_id": 1
-                                                                            } }).then(function() {
-                        return urlCollection.insertOne({ _id: findLastNumID(type),
+                    return counterCollection.find({ _id: Number(type) }).limit(1).toArray().then(function(item) {  
+                        updateLastNumID(type);                  
+                        return urlCollection.insertOne({ _id: item[0].last_num_id + 1,
                                                     long_url: longUrl,
-                                                   short_url: generate_short(findLastNumID(type)),
+                                                   short_url: shortHost + "/" + generate_short(item[0].last_num_id + 1),
                                                    timestamp: new Date()
                         }).then(function(newDoc) {
                             return exports.findUrlByID(newDoc.insertedId);
@@ -43,9 +43,6 @@ MongoClient.connect(fullMongoUrl)
             if (!id) return Promise.reject("You must provide a id");
 
             return urlCollection.find({ _id: id }).limit(1).toArray().then(function(listOfUrls) {
-                if (listOfUrls.length === 0) {
-                    throw "Could not find user with ID of " + id;
-                }
                 return listOfUrls[0];
             });
         };
@@ -63,8 +60,13 @@ MongoClient.connect(fullMongoUrl)
             });
         };
 
+        updateLastNumID = function(type) {
+            return counterCollection.update({ _id: Number(type) }, { $inc: { "last_num_id": 1
+                                                                            } });
+        };
+
         findLastNumID = function(type) {
-            return counterCollection.find({ _id: type }).limit(1).toArray().then(function(item) {
+            return counterCollection.find({ _id: Number(type) }).limit(1).toArray().then(function(item) {
                 return item[0].last_num_id;
             });
         };

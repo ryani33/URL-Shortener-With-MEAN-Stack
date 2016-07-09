@@ -25,8 +25,7 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <ul class="nav navbar-nav">
-                <li><a href="#">Generate the short URL</a></li>
-                <li><a href="#">History</a></li>
+                <li><a href="http://www.xiaoyu.space">Xiaoyu Zhai</a></li>
             </ul>
         </div>
     </nav>
@@ -62,7 +61,7 @@
                         </div>
                     </div>
                     <hr />
-                    <div class="entry-content">
+                    <div class="entry-content" ng-controller="listController">
                         <div class="entry-single-title">
                             <div class="col-md-7">
                                 <strong>Long Url (Original)</strong>
@@ -77,10 +76,10 @@
                         <div class="entry-repeat" ng-repeat="row in list">
                             <div class="entry-single">
                                 <div class="col-md-7">
-                                    {{row.long_url}}
+                                    <a ng-href="{{row.long_url}}">{{row.long_url}}</a>
                                 </div>
                                 <div class="col-md-3">
-                                    {{row.short_url}}
+                                    <a ng-href="{{row.short_url}}">{{row.short_url}}</a>
                                 </div>
                                 <div class="col-md-2">
                                     {{row.timestamp || date}}
@@ -92,7 +91,7 @@
                 </div>
                 
             </section>
-            <section class="col-md-5">
+            <section class="col-md-5" ng-controller="postController">
                 <div class="row">
                     <div class="col-md-12">
                         <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add a link</h2>
@@ -103,7 +102,8 @@
                     <div class="form-group">
                         <label class="control-label col-md-3" for="long-url">Long URL</label>
                         <div class="col-md-9">
-                            <textarea rows="4" name="long-url" class="form-control" id="long-url"></textarea>
+                            <textarea rows="4" name="longurl" class="form-control" id="longurl" ng-model="longurl"></textarea>
+                            <span ng-show="errorLongUrl">{{errorLongUrl}}</span>
                         </div>
                     </div>
                     <div class="form-group">
@@ -111,24 +111,24 @@
                         <div class="col-md-9">
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="5" checked>5
+                                    <input type="radio" name="optionsRadios" id="optionsRadios1" ng-model="type" value="5" checked>5
                                 </label>
                             </div>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="7">7
+                                    <input type="radio" name="optionsRadios" id="optionsRadios2" ng-model="type" value="7">7
                                 </label>
                             </div>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="0">Random
+                                    <input type="radio" name="optionsRadios" id="optionsRadios3" ng-model="type" value="0">Random
                                 </label>
                             </div>
                         </div>
                     </div>
                     <div class="alert alert-danger hidden" role="alert" id="create-error"><%= loadError%></div>
                     <div class="alert alert-success hidden" role="alert" id="create-success"></div>
-                    <button type="submit" class="btn btn-primary col-md-offset-4" style="margin-top: 10px; margin-bottom: 100px;">Generate
+                    <button type="submit" ng-click="submitForm()" class="btn btn-primary col-md-offset-4" style="margin-top: 10px; margin-bottom: 100px;">Generate
                         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                     </button>
                 </form>

@@ -17,8 +17,10 @@
   },
   "homepage": "https://github.com/ryani33/URL-Shortener-With-MEAN-Stack#readme",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "express": "^4.13.4",
     "mongodb": "^2.1.7",
+    "os": "^0.1.1",
     "path": "^0.12.7",
     "request-promise": "^2.0.0"
   }
