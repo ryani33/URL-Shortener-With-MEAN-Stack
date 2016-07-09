@@ -39,4 +39,4 @@ Converting a unique integer ID (which is in base10) to it's equivalent in base59
 ```
 
 ##Useage
-Please go to this site
+Please go to [this site](https://goourl.herokuapp.com/)
