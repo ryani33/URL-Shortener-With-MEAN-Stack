@@ -16,29 +16,26 @@ At a high level, the URL shortener works by taking a long URL and applying a has
 - short URL -> long URL
 
 
-Converting a unique integer ID (which is in base10) to it's equivalent in base58. The base59 alphabet we will be using is: 0123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ. It is just the numbers 0-9, a-z, and A-Z, giving us a total of 59 characters, hence the 59 in base59. We are excluding l, O to avoid confusion when sharing the URL over the phone or copying it manually.
+Converting a unique integer ID (which is in base10) to it's equivalent in base59. The base59 alphabet we will be using is: `0123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ`. It is just the numbers `0-9`, `a-z`, and `A-Z`, giving us a total of 59 characters, hence the 59 in base59. We are excluding `l`, `O` to avoid confusion when sharing the URL over the phone or copying it manually.
 
 ##Application Structure
 ```
 - app
------ models/
----------- nerd.js <!-- the nerd model to handle CRUD -->
------ routes.js
+---- data.js
+---- rules.js
 - config
------ db.js 
+---- db.js 
 - node_modules <!-- created by npm install -->
 - public <!-- all frontend and angular stuff -->
------ css
------ js
----------- controllers <!-- angular controllers -->
----------- services <!-- angular services -->
----------- app.js <!-- angular application -->
----------- appRoutes.js <!-- angular routes -->
------ img
------ libs <!-- created by bower install -->
------ views 
----------- home.html
------ index.html
+---- css
+---- js
+-------- shared
+-------- controllers <!-- angular controllers -->
+-------- services <!-- angular services -->
+-------- app.js <!-- angular application -->
+---- img
+---- views 
+-------- index.html
 - package.json <!-- tells npm which packages we need -->
 - server.js <!-- set up our node application -->
 ```

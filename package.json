@@ -1,0 +1,25 @@
+{
+  "name": "url-shortener-with-mean-stack",
+  "version": "1.0.0",
+  "description": "This project is a URL shortening service similar to sites like bitly.com using Node.js, Express, MongoDB and Angular (MEAN stack).",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryani33/URL-Shortener-With-MEAN-Stack.git"
+  },
+  "author": "Xiaoyu Zhai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ryani33/URL-Shortener-With-MEAN-Stack/issues"
+  },
+  "homepage": "https://github.com/ryani33/URL-Shortener-With-MEAN-Stack#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "mongodb": "^2.1.7",
+    "path": "^0.12.7",
+    "request-promise": "^2.0.0"
+  }
+}
