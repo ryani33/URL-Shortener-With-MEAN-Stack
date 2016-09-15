@@ -38,5 +38,5 @@ Converting a unique integer ID (which is in base10) to it's equivalent in base59
 - server.js <!-- set up our node application -->
 ```
 
-##Useage
+##Usage
 Please go to [this site](https://goourl.herokuapp.com/)
